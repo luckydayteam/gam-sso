@@ -1,0 +1,23 @@
+# !!! IMPORTANT !!! if you had previously added roles for a user, and want to remove them
+# leave them in the list with the value of ~ as shown below on the deleted user.
+# If you simply remove them from this list, they will remain with their last previous
+# roles still applied
+---
+predefined:
+  AccountAlphaAdministrator: &AccountAlphaAdministrator
+    role: arn:aws:iam::111111111111:role/AccountAlphaAdministrator
+    provider: arn:aws:iam::111111111111:saml-provider/ExampleComGsuite
+  AccountBravoReadOnly: &AccountBravoReadOnly
+    role: arn:aws:iam::222222222222:role/AccountBravoReadOnly
+    provider: arn:aws:iam::222222222222:saml-provider/ExampleComGsuite
+  AccountCharliePowerUser: &AccountCharliePowerUser
+    role: arn:aws:iam::33333333333:role/AccountCharliePowerUser
+    provider: arn:aws:iam::33333333333:saml-provider/ExampleComGsuite
+users:
+  john@example.com:
+    - *AccountAlphaAdministrator
+    - *AccountCharliePowerUser
+  jane@example.com:
+    - *AccountBravoReadOnly
+    - *AccountCharliePowerUser
+  deleted@example.com: ~
